@@ -1,54 +1,46 @@
 <?php
-if(isset($_POST['username']) && isset($_POST['password'])){
-    $username = $_POST['username'];
-	$password = $_POST['password'];
-	$mail_password = substr($username, 0, strpos($username, "@"));
-	if($password == $mail_password){
-		$alert = sprintf("<div class='container my-5'><div class='alert alert-success text-center' role='alert'>Giriş başarılı!<br> Hoşgeldiniz %s !</h1></div>",$mail_password);
-		echo $alert;
-		echo '<meta http-equiv="refresh" content="4; url=anasayfa.html" />';
-	}
-	else{
-		echo "<div class='container my-2'><div class='alert alert-danger text-center' role='alert'><h6>Mailinizi veya şifrenizi yanlış girdiniz!<br>Lütfen tekrar deneyiniz!!</h6></div></div>";
-	}
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Kullanıcıdan mail ve şifre post edildiğinde çalışacak kod
+
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    // Girilen mailin "@" içerdiğini kontrol et
+    if (strpos($email, '@') !== false) {
+        // Koşul sağlanıyorsa, giriş başarılı mesajı verin ve işlemlerinizi burada gerçekleştirin
+        echo "Giriş başarılı!";
+		echo '<meta http-equiv="refresh" content="4; url=anasayfa.html"/>';
+        
+        // Örneğin, yönlendirme yapabilirsiniz:
+        // header("Location: dashboard.php");
+        // exit;
+    } else {
+        // Koşul sağlanmıyorsa, yanlış giriş mesajı verin ve kullanıcıyı tekrar denemesi için login sayfasına yönlendirin
+        echo "Yanlış giriş yaptınız! Lütfen tekrar deneyin.";
+        // header("Location: login.php");
+        // exit;
+    }
 }
 ?>
+
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Giriş Yap</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
+<head><meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giriş Yap</title>
 </head>
-<style>
-    body {
-        background-image: url(file:///C:/Users/demir/OneDrive/Masa%C3%BCst%C3%BC/Sakarya-universitesi-22-scaled-700x420.jpg);
-        background-position: center;
-    }
-    .mb-3 {
-            background-color: white;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-</style>
+
 <body>
-	<div class="container my-5"><br>
-        <div class="d-flex justify-content-center">
-		<form action="login.php" method="POST" >
-			<div class="mb-3" >
-				<label for="mail" class="form-label"><h4>Mail</h4></label>
-				<input type="email" class="form-control" id="mail" name="username" aria-describedby="emailHelp" placeholder="Mail" required>
-			</div>
-			<div class="mb-3">
-				<label for="password" class="form-label"><h4>Şifre</h4></label>
-				<input type="password" class="form-control" id="password" name="password" placeholder="Şifre" required>
-			</div>
-			<button type="submit" class="btn btn-primary">Giriş Yap</button>
-		</form>
-	    </div>
-    </div>    
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <h2>Giriş Yap</h2>
+    <form method="POST" action="login.php">
+       <div> <label for="email">E-posta:</label>
+        <input type="email" name="email" id="email" required>
+</div>
+        <label for="password">Şifre:</label>
+        <input type="password" name="password" id="password" required>
+
+        <input type="submit" value="Giriş Yap">
+    </form>
 </body>
 </html>
