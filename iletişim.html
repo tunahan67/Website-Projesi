@@ -7,8 +7,7 @@
 </head>
 <style>
    body {
-        background-image: url(file:///C:/Users/demir/OneDrive/Masa%C3%BCst%C3%BC/arenadasneijder.jpg);
-        background-color: rgb(238, 255, 0);
+        background-image: url(file:///C:/Users/demir/OneDrive/Masa%C3%BCst%C3%BC/foto1.jpg);
         background-size: cover;
         background-repeat: no-repeat;
         background-size: cover;
@@ -17,6 +16,7 @@
     .navbar {
         width: 90%;
         height: 10%;
+        margin-left: 20px;
         background-color: #6b461f;
         padding: 50 px;
         display: flex;
@@ -28,11 +28,12 @@
             text-decoration: none;
             color: rgba(255, 255, 255, 0.784);
         }
-    #container {
+    .container {
     border-radius: 10%;
-    width: 900px;
-    height: 225px ;
-    margin: 0 auto;
+    width: 500px;
+    height: 525px ;
+    margin-left: 475px;
+    margin-top: 10px;
     padding: 20px;
     background-color: rgba(238, 238, 238, 0.742); /* İçerik kutusu arka plan rengi */
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Gölgelendirme */
@@ -77,6 +78,14 @@
             box-sizing: border-box;
             margin-bottom: 20px;
         }
+        .messagebox{width: 60%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+
+        }
 
         textarea {
             height: 150px;
@@ -98,6 +107,7 @@
         }   
 
         </style>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@1,300&display=swap" rel="stylesheet">
         <body>
             <body>
                 <div class="navbar">
@@ -109,6 +119,7 @@
                     <a href="özgeçmiş.html">Özgeçmişim</a>
                     <a href="ilgialanlarım.html">İlgi Alanlarım</a>
                 </div>
+                   <div class="container"> 
                     <h1>İletişim Formu</h1>
                     <form @submit.prevent="submitForm">
                         <form action="mailto:g221210373@ogr.sakarya.edu.tr" method="POST" enctype="text/plain"></form>
@@ -122,7 +133,7 @@
                         </div>
                         <div>
                             <label for="message">Mesajınız:</label>
-                            <textarea id="message" v-model="formData.message" required></textarea>
+                            <textarea  class="messagebox" v-model="formData.message" required></textarea>
                         </div>
                         <button type="submit">Formu Gönder</button>
                         <button @click="resetForm">Formu Sıfırla</button>
